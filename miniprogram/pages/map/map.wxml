@@ -1,0 +1,36 @@
+
+<view class="tab"> 
+    <!--横向滚动-->
+    <scroll-view class="scroll-tab-content" scroll-x>
+        <view wx:for="{{tabList}}" wx:key="index" wx:for-item="item" id="{{item.id}}"
+            class="scroll-tab--wrapper  {{isSelectedBuildType == item.id ? 'active' : ''}}"
+            bindtap="changePage"
+        >
+        {{item.name}}
+        </view>
+    </scroll-view>
+</view>
+
+<view>
+    <map class="myMap"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    markers="{{showMarkers}}" 
+    include-points="{{showMarkers}}"
+    enable-3D = "true"
+    show-location = "true"
+    ></map>
+</view>
+
+<view class="placeList">
+    <button class="btnShow" bindtap="changeShow">
+        {{toast}}
+    </button>
+    <view class="placeDetail" hidden="{{isHidden}}">
+        <scroll-view class="placeScroll" scroll-y >
+            <button wx:for="{{showMarkers}}"  wx:key="index" wx:for-item="item" bindtap="showPlaceDetail">
+                <view class="btnPlace">{{item.title}}</view>
+            </button>
+        </scroll-view>
+    </view>
+</view>
